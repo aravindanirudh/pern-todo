@@ -1,0 +1,7 @@
+-- `\l` - list all databases.
+-- `\c` - move inside a database.
+-- `\dt` - show table in database.
+-- `CREATE DATABASE perntodo` - create a database called 'perntodo'.
+-- `CREATE TABLE todo(...)` - create a table called 'todo'.
+-- CREATE DATABASE perntodo;
+-- CREATE TABLE todo( todo_id SERIAL PRIMARY KEY, description VARCHAR(255));

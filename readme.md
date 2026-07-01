@@ -16,4 +16,3 @@
 - `\dt` - show table in database.
 - `CREATE DATABASE perntodo` - create a database called 'perntodo'.
 - `CREATE TABLE todo(...)` - create a table called 'todo'.
-- https://youtu.be/ldYcgPKEZC8?t=504
