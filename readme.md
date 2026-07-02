@@ -18,3 +18,6 @@
 - `CREATE DATABASE perntodo` - create a database called 'perntodo'.
 - `CREATE TABLE todo(...)` - create a table called 'todo'.
 - Use `"type": "module",` in package.json to use ES Modules like `import { Pool } from "pg";` instead of `const Pool = require("pg").Pool;`.
+
+### Todos
+- Make clear notes for each new thing

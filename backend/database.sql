@@ -1,3 +1,4 @@
+-- This file is completely useless and these commands can be directly pasted into PostgreSQL in CMD by doing `psql -U postgres`
 -- `\l` - list all databases.
 -- `\c` - move inside a database.
 -- `\dt` - show table in database.
