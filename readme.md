@@ -11,8 +11,10 @@
 - `pg` enables your Node.js application to connect, query, and interact with a PostgreSQL database.
 
 ### Notes
+- `psql -U postgres` in cmd for connecting to PostgreSQL.
 - `\l` - list all databases.
-- `\c` - move inside a database.
-- `\dt` - show table in database.
+- `\c <database_name>` - move inside a database.
+- `\dt` - show list of tables in database.
 - `CREATE DATABASE perntodo` - create a database called 'perntodo'.
 - `CREATE TABLE todo(...)` - create a table called 'todo'.
+- Use `"type": "module",` in package.json to use ES Modules like `import { Pool } from "pg";` instead of `const Pool = require("pg").Pool;`.
