@@ -21,3 +21,4 @@
 
 ### Todos
 - Make clear notes for each new thing
+- Why no CSS import required in each jsx file
