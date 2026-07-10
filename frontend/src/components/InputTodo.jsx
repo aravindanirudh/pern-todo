@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 const InputTodo = () => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState(""); // State variable to hold the description of the todo item. Initially, an empty string.
 
   const onSubmitForm = async (e) => {
-    e.preventDefault(); // For not refreshing
+    e.preventDefault(); // For not refreshing on form submit
     try {
       const body = { description };
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/todos`, {
