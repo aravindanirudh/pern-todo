@@ -3,6 +3,9 @@
 - Comments in detail (so that even a beginner can easily understand) are given alongisde each line of code in various project files.
 - This readme.md file contains the notes made during learning.
 
+> [!NOTE]
+> This repository contains `.env` file purposefully committed in `frontend` directory. Generally, it is a terrible idea to commit `.env` files. In this case, it is safe as it contains only the `VITE_BASE_URL`.
+
 ### Project Initialization
 - Install NodeJS, PostgreSQL from official website. For PostgreSQL installation tutorial, see [this video](https://www.youtube.com/watch?v=fZQI7nBu32M).
 - Create backend and frontend folder.
