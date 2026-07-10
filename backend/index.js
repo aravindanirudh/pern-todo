@@ -1,18 +1,18 @@
-import express from "express"; // express exports a function.
+import express from "express";
 import cors from "cors"; // CORS middleware - Cross-Origin Resource Sharing or CORS is a browser security mechanism that restricts web pages from requesting resources from a different domain than the one that served the original page.
-import dotenv from "dotenv"; // The Dotenv package exports an object containing a method called config(). It then stores every variable in .env into process.env.
-dotenv.config();
-import pg from "pg"; // For database/table initialization
-import pool from "./db.js";
+import dotenv from "dotenv"; // The Dotenv package exports an object containing a method called config().
+dotenv.config(); // Actually loads the environment variables from the .env file into process.env. This allows you to access your environment variables using process.env.VARIABLE_NAME.
+import pg from "pg"; // For database/table initialization.
+import pool from "./db.js"; // The pool object created in db.js is imported here to be used for database operations like querying, inserting, updating, and deleting data from the PostgreSQL database.
 
 const app = express(); // Run the function. The returned object (app) contains lots of methods such as: app.get(), app.post(), app.put(), app.delete(), app.use(), app.listen().
 
-app.use(cors());
+app.use(cors()); // Actually use the CORS middleware. This allows your backend server to accept requests from different origins (like your frontend React app running on a different port). Without this, your frontend would be blocked from making requests to your backend due to the same-origin policy enforced by browsers.
 app.use(express.json()); // It is a built-in middleware function in Express.js that automatically parses incoming HTTP requests with JSON payloads. You must place this middleware BEFORE your routes. Always place app.use(express.json()) above your route definitions. If placed below them, it will not execute for those routes. The incoming client request (from tools like Postman, Frontend Fetch, or Axios) must include the header Content-Type: application/json, otherwise this middleware will safely ignore it. req.body.
 
 // Database Initialization & Server Startup logic
 const initDbAndStartServer = async () => {
-  // Connect to the default 'postgres' database to check/create 'perntodo'
+  // Connect to the default 'postgres' database to check/create 'perntodo'.
   const tempClient = new pg.Client({
     user: "postgres",
     password: "200520052005",
@@ -34,12 +34,12 @@ const initDbAndStartServer = async () => {
     }
   } catch (err) {
     console.error("Error creating database on startup:", err.message);
-    process.exit(1); // Crash gracefully if database creation fails entirely
+    process.exit(1); // Crash gracefully if database creation fails entirely.
   } finally {
-    await tempClient.end(); // Always close temp connection
+    await tempClient.end(); // Always close temp connection.
   }
 
-  // Now that the DB guaranteed exists, use main 'pool' to check/create the table
+  // Now that the DB guaranteed exists, use main 'pool' to check/create the table.
   try {
     const createTableQuery = `
                 CREATE TABLE IF NOT EXISTS todo(
@@ -53,14 +53,14 @@ const initDbAndStartServer = async () => {
     console.error("Error creating table on startup:", err.message);
   }
 
-  // Start the Express server so it can receive frontend requests finally
+  // Start the Express server so it can receive frontend requests finally.
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
     console.log(`Server has started on port ${PORT}!`);
   });
 };
 
-// Execute the startup function!
+// Execute the startup function.
 initDbAndStartServer();
 
 // Routes

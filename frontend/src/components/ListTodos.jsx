@@ -13,7 +13,7 @@ const ListTodos = () => {
           method: "DELETE",
         },
       );
-      setTodos(todos.filter((todo) => todo.todo_id !== id));
+      setTodos(todos.filter((todo) => todo.todo_id !== id)); // This is a crucial React pattern. Instead of refreshing the entire web page to see the item disappear, this line instantly updates the UI. It looks at the current list of todos, filters out the one you just deleted, and saves the new, shorter list back into state. Alternatively, you could call getTodos() here to fetch the updated list from the backend, but that would be slower and less efficient. Alternatively, you could also use window.location = "/" to force a hard refresh, but that is considered a beginner "hack" in React. Advanced React apps usually update the state directly so the screen updates without a flashing refresh.
     } catch (err) {
       console.log(err.message);
     }
@@ -24,6 +24,8 @@ const ListTodos = () => {
       const response = await fetch(`${import.meta.env.VITE_BASE_URL}/todos`);
       const jsonData = await response.json();
       setTodos(jsonData);
+      // console.log(jsonData); // This is a debugging line. It prints the fetched data to the browser console so you can see what the backend sent back.
+      // This will print the entire array of todos to the console twice during development because React's Strict Mode intentionally runs certain functions twice to help you catch bugs. This is normal and expected behavior in development mode. However, in production mode, this will only run once and you will see the data printed to the console only once.
     } catch (err) {
       console.log(err.message);
     }
@@ -32,6 +34,7 @@ const ListTodos = () => {
   useEffect(() => {
     getTodos();
   }, []);
+  // The empty array [] at the end is very important. It tells React: "Only run this inner function exactly ONE time, right when this component first appears on the screen." Without that [], React would fetch data in an infinite, uncontrollable loop!
 
   return (
     <div className="flex justify-center mt-10 p-2 sm:p-4">
@@ -76,7 +79,7 @@ const ListTodos = () => {
           ))}
         </tbody>
       </table>
-          {/* If editingTodo has data, show the modal and pass the data to it */}
+          {/* If editingTodo has data, show the modal and pass the data to it (conditional rendering). */}
           {editingTodo && (
             <EditTodo
               todo={editingTodo}
